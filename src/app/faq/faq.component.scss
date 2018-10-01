@@ -1,0 +1,47 @@
+@import '../../theme/variables.scss';
+
+.faq {
+  align-items: flex-start;
+  background-color: $blue;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  justify-content: flex-end;
+  margin: 0 0 24px;
+  padding: 24px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  .open {
+    color: #000;
+  }
+
+  .title {
+    color: $green;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 0 8px;
+  }
+
+  .question {
+    cursor: pointer;
+    padding: 4px 0 0;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 16px 16px 8px;
+  }
+
+  ::ng-deep .spacer {
+    padding: 0 0 16px;
+  }
+}

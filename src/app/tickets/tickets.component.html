@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<ion-content>
+  <div class="tickets" padding>
+    <!-- <button (click)="getTest()">TEST</button> -->
+    <div class="image-container">
+      <img *ngIf="lottery.name === 'powerball'" src="assets/lotteries/powerball_logo.png" alt="powerball"/>
+      <img *ngIf="lottery.name === 'megamillions'" src="assets/lotteries/megamillions_logo.png" alt="megamillions"/>
+    </div>
+    <div style="display: flex; flex-direction: row;">
+      <div class="tickets-section">
+        <div class="tick" [class.active]="i === activeTicket" [class.complete]="ticket.complete"
+        *ngFor="let ticket of tickets; let i = index" (click)="changeTicket(i)">
+          <div class="number" [innerHtml]="ticket.numbers[0]"></div>
+          <div class="number" [innerHtml]="ticket.numbers[1]"></div>
+          <div class="number" [innerHtml]="ticket.numbers[2]"></div>
+          <div class="number" [innerHtml]="ticket.numbers[3]"></div>
+          <div class="number" [innerHtml]="ticket.numbers[4]"></div>
+          <div class="number mega" [innerHtml]="ticket.mega"></div>
+          <i *ngIf="i !== 0" class="material-icons remove" (click)="removeTicket(i)">highlight_off</i>
+        </div>
+        <div class="tick add" (click)="addTicket()">
+          <div class="add-ticket">
+            <i class="material-icons">add</i>
+            <span>Add Ticket</span>
+          </div>
+          <div class="number"></div>
+          <div class="number"></div>
+          <div class="number"></div>
+          <div class="number"></div>
+          <div class="number"></div>
+          <div class="number mega"></div>
+        </div>
+      </div>
+      <div *ngIf="!smallScreen" class="ticket-selection">
+        <app-ticket [ticket]="tickets[activeTicket]" [range]="range" [megaRange]="megaRange" (change)="updateTicket($event)"></app-ticket>
+      </div>
+    </div>
+    <div *ngIf="chargeError" class="error">
+      <div class="title">Error</div>
+      <div [innerHtml]="chargeResponse.error"></div>
+    </div>
+    <div *ngIf="totalTickets > 0" class="card checkout">
+      <div class="title">
+        <div>Purchase for <span [innerHtml]="type | titlecase"></span></div>
+        <div *ngIf="!smallScreen">&nbsp;-&nbsp;</div>
+        <!-- <div><span [innerHtml]="lottery.resultsAnnouncedAt.seconds * 1000 | date:'MMM d ha, EEEE'"></span></div> -->
+      </div>
+      <div><span [innerHtml]="totalTickets"></span>&nbsp;Ticket<span *ngIf="totalTickets > 1">s</span>&nbsp;x $3 = $<span [innerHtml]="totalTickets * 3"></span></div>
+      <div *ngIf="amountToChargeCredits > 0">Credit Available: $<span [innerHtml]="amountToChargeCredits"></span></div>
+      <div class="total">Total Cost: $<span [innerHtml]="amountToChargeStripe"></span></div>
+      <button *ngIf="amountToChargeStripe > 0" (click)="openCheckout()">Purchase Ticket<span *ngIf="totalTickets > 1">s</span>&nbsp;Now</button>
+      <button *ngIf="userInfo && amountToChargeStripe === 0" (click)="creditCheckout()">Purchase Ticket<span *ngIf="totalTickets > 1">s</span>&nbsp;Now</button>
+      <div id="google-pay"></div>
+    </div>
+    <div *ngIf="purchaseComplete" class="card complete-purchase">
+      <div class="title">Congratulations on your Purchase!</div>
+      <div>Please check your email for the purchase receipt. Our team will be in touch after the lottery drawing to inform you of any winnings.</div>
+    </div>
+    <div *ngIf="purchaseLoading" class="purchase-loading">
+      <div>Ticket Purchase is Underway</div>
+      <div>Should only be a few moments</div>
+      <div class="loading"></div>
+    </div>
+  </div>
+  <app-bottom></app-bottom>
+</ion-content>
+<app-modal *ngIf="smallScreen" [active]="openTicketSelection" [doneButton]="true" (closed)="openTicketSelection=$event">
+  <app-ticket [ticket]="tickets[activeTicket]" [range]="range" [megaRange]="megaRange" (change)="updateTicket($event)"></app-ticket>
+</app-modal>

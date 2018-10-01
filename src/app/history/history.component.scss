@@ -1,0 +1,121 @@
+@import '../../theme/variables.scss';
+
+.history {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr;
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .game {
+    font-size: 18px;
+
+    @media (max-width: 450px) {
+      margin: 0 0 24px;
+    }
+  }
+
+  .purchase {
+    border: 1px solid $orange;
+    border-radius: 4px;
+    margin: 0 0 16px;
+    padding: 0 24px 12px;
+  }
+
+  .reorder {
+    margin: 12px 0 0;
+  }
+
+  .history-item {
+    align-items: center;
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 16px 0 0;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 450px) {
+      grid-gap: 24px;
+      grid-template-columns: 1fr;
+      margin: 24px 0 0;
+    }
+
+    &.title {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 14px;
+    }
+
+    .ticket {
+      align-items: center;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 4px 2px;
+      position: relative;
+
+      .number {
+        border: 1px solid $green;
+        border-radius: 100%;
+        background-color: rgba(0, 0, 0, 0.12);
+        font-size: 14px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        width: 24px;
+
+        &.match {
+          background-color: $green;
+          font-weight: bold;
+        }
+
+        &.mega {
+          border: 1px solid $orange;
+
+          &.match {
+            background-color: $orange;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .winnings {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .hide-sm {
+    @media(max-width: 900px) {
+      display: none;
+    }
+  }
+
+  .hide-xsm {
+    @media(max-width: 450px) {
+      display: none;
+    }
+  }
+
+  .show-xsm {
+    display: none;
+
+    @media(max-width: 450px) {
+      display: block;
+      font-size: 12px;
+      left: 0;
+      position: absolute;
+      top: -16px;
+    }
+  }
+}

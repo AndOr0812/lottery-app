@@ -1,3 +1,15 @@
+/* Using to store all of the global variables - use @import to include on component styles*/
+// colors
+$green: #15ca53;
+$orange: #ffa000;
+$red: #f6511d;
+$blue: #d8edfa;
+// shadows
+$box-shadow-level-1: 0 1px 3px rgba(10, 44, 76, 0.12), 0 1px 2px rgba(10, 44, 76, 0.12);
+$box-shadow-level-2: 0 3px 6px rgba(10, 44, 76, 0.12), 0 3px 6px rgba(10, 44, 76, 0.12);
+// transitions
+$card-hover: all 0.3s cubic-bezier(0.25, 0.8, 0.25,1);
+
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 

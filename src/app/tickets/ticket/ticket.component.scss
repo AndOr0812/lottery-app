@@ -1,0 +1,81 @@
+@import '../../../theme/variables.scss';
+
+.ticket {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  padding: 8px;
+  position: relative;
+
+  &.complete {
+    background-color: $blue;
+  }
+
+  .row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    justify-content: space-between;
+
+    .quick {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 4px 8px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    i {
+      color: rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      padding: 8px;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.24);
+      }
+    }
+  }
+
+  .choose {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    height: 20px;
+    margin: 8px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .numbers {
+    align-items: center;
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+
+    .number {
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.24);
+      border-radius: 2px;
+      color: rgba(0, 0, 0, 0.24);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      line-height: 16px;
+      padding: 2px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+
+      &.selected {
+        background-color: rgba(0, 0, 0, 0.24);
+      }
+    }
+  }
+}

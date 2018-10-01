@@ -1,0 +1,42 @@
+<div *ngIf="histories" class="card history">
+  <div class="heading">Purchase History</div>
+  <app-spinner *ngIf="!histories"></app-spinner>
+  <div *ngFor="let game of histories">
+    <div class="game"><span [innerHtml]="game.game | titlecase"></span> for <span [innerHtml]="game.date.seconds * 1000 | date:'MMM d ha, EEEE'"></span></div>
+    <div class="history-item title hide-xsm">
+      <div>Purchased Ticket</div>
+      <div>Actual Drawing</div>
+      <div class="hide-sm">Winnings</div>
+      <div></div>
+    </div>
+    <div class="purchase" *ngFor="let purchase of game.purchases">
+      <button *ngIf="game.actualResults" class="reorder" (click)="reorder(game.game, purchase.tickets)">Reorder These Numbers</button>
+      <div class="history-item" *ngFor="let ticket of purchase.tickets">
+        <div *ngIf="!game.actualResults" class="ticket">
+          <div class="show-xsm">Purchased</div>
+          <div *ngFor="let number of ticket.numbers" class="number" [innerHtml]="number"></div>
+          <div class="number mega" [class.match]="ticket.matchedMega" [innerHtml]="ticket.mega"></div>
+        </div>
+        <div *ngIf="!game.actualResults" class="ticket">
+          <div class="show-xsm">Actual Results</div>
+          <div *ngFor="let number of [1,2,3,4,5]" class="number" [innerHtml]="'?'"></div>
+          <div class="number mega" [innerHtml]="'?'"></div>
+        </div>
+        <div *ngIf="game.actualResults" class="ticket">
+          <div class="show-xsm">Purchased</div>
+          <div *ngFor="let number of ticket.numbers" class="number" [class.match]="number.matched" [innerHtml]="number.value"></div>
+          <div class="number mega" [class.match]="ticket.matchedMega" [innerHtml]="ticket.mega"></div>
+        </div>
+        <div *ngIf="game.actualResults" class="ticket">
+          <div class="show-xsm">Actual Results</div>
+          <div *ngFor="let number of game.actualResults.numbers" class="number" [innerHtml]="number"></div>
+          <div class="number mega" [innerHtml]="game.actualResults.mega"></div>
+        </div>
+        <div class="winnings">
+          <div [innerHtml]="ticket.ticketWinnings | currency"></div>
+          <button *ngIf="ticket.ticketWinnings > 0"><a href="mailto:123lottoservice@gmail.com">Request Withdrawel</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

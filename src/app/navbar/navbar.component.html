@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar class="navbar">
+    <div class="nav">
+      <a (click)="goHome()">
+        <!-- <img src="/assets/TempLogo.png" alt="Logo"/> -->
+        <img src="/assets/logo/123-Lottery_flat.svg" alt="Logo"/>
+      </a>
+    </div>
+    <div *ngIf="!userInfo" class="user-info">
+      <button (click)="openLogin = true">
+        <i class="material-icons">person</i>
+        <span>Login</span>
+      </button>
+      <div></div>
+    </div>
+    <div *ngIf="userInfo" class="user-info">
+      <div style="position: relative">
+        <div [innerHtml]="userInfo.email"></div>
+        <div class="logout" (click)="logout()">Logout</div>
+      </div>
+      <div><span [innerHtml]="userInfo.credits | currency"></span> Credit</div>
+    </div>
+  </ion-navbar>
+</ion-header>
+<app-modal [active]="openLogin" (closed)="openLogin=$event">
+  <app-login></app-login>
+</app-modal>

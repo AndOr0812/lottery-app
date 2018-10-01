@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<ion-content>
+  <div class="homepage" padding>
+    <div style="font-size: 32px; text-align: center;">California Lottery Tickets Sold Online Cheap!</div>
+    <div class="lotteries">
+      <div *ngFor="let lottery of lotteries">
+        <ion-card [class.noclick]="lottery.date.days < 0" (click)="goTo(lottery.name)">
+          <div class="image-container">
+            <img *ngIf="lottery.name === 'powerball'" src="assets/lotteries/powerball_logo.png" alt="powerball"/>
+            <img *ngIf="lottery.name === 'megamillions'" src="assets/lotteries/megamillions_logo.png" alt="megamillions"/>
+          </div>
+          <div [innerHtml]="lottery.jackpot | currency:'USD':'symbol':'1.0-0'"></div>
+          <div class="date" [innerHtml]="lottery.resultsAnnouncedAt.seconds * 1000 | date:'MMM d ha, EEEE'"></div>
+          <div *ngIf="lottery.date.days > -1" class="time">
+            <div *ngIf="lottery.date.days > 0"><span [innerHtml]="lottery.date.days"></span> Days</div>
+            <div><span [innerHtml]="lottery.date.hours"></span> Hours</div>
+            <div><span [innerHtml]="lottery.date.minutes"></span> Minutes</div>
+          </div>
+          <div *ngIf="lottery.date.days < 0" class="time orange">Prize information will be available upon certification of national results, which is typically 2 hours after the time of draw.</div>
+        </ion-card>
+        <button *ngIf="lottery.date.days > -1" (click)="goTo(lottery.name)">PLAY NOW!</button>
+      </div>
+    </div>
+    <div class="how-to-play">
+      <div class="container">
+        <div class="title">
+          <div>It's as easy as</div>
+          <div>&nbsp;1-2-3 Lottery!</div>
+        </div>
+        <div class="row">
+          <div class="circle">1</div>
+          <div>Pick Lottery</div>
+        </div>
+        <div class="row">
+          <div>Choose Numbers</div>
+          <div class="circle" style="margin: 0 0 0 24px">2</div>
+        </div>
+        <div class="row orange">
+          <div class="circle orange">3</div>
+          <div>Buy Ticket</div>
+        </div>
+      </div>
+    </div>
+    <app-faq></app-faq>
+    <ion-card *ngIf="!userInfo">
+      <app-login></app-login>
+    </ion-card>
+    <app-history *ngIf="userInfo" [email]="userInfo.email"></app-history>
+  </div>
+  <app-bottom></app-bottom>
+</ion-content>
+<app-modal [active]="openLogin" (closed)="openLogin=$event">
+  <app-login></app-login>
+</app-modal>

@@ -1,0 +1,32 @@
+.terms {
+  margin: 88px 0 0;
+  position: relative;
+
+  .title {
+    font-size: 48px;
+    margin: 0 0 24px;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      font-size: 32px;
+    }
+  }
+
+  .section {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 24px 0 0;
+  }
+
+  .list-item {
+    padding: 16px 0 0 16px;
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+  }
+
+  .letter-item {
+    padding: 16px 0 0 24px;
+  }
+}

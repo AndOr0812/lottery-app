@@ -1,0 +1,28 @@
+<div class="ticket" [class.complete]="complete">
+  <div class="row">
+    <div class="quick" (click)="quickPick()">Quick Pick</div>
+    <i *ngIf="selectedNumbers > 0 || selectedMega > 0" class="material-icons" (click)="clear()">delete</i>
+  </div>
+  <div class="choose">
+    <div *ngIf="5 - selectedNumbers">+ Choose <span [innerHtml]="5 - selectedNumbers"></span></div>
+  </div>
+  <div class="numbers">
+    <div class="number"
+      [class.selected]="number.selected"
+      *ngFor="let number of rangeArray"
+      [innerHtml]="number.value"
+      (click)="selectNumber(number)"
+    ></div>
+  </div>
+  <div class="choose">
+    <div *ngIf="1 - selectedMega > 0">+ Choose <span [innerHtml]="1 - selectedMega"></span></div>
+  </div>
+  <div class="numbers">
+    <div class="number"
+      [class.selected]="number.selected"
+      *ngFor="let number of megaRangeArray"
+      [innerHtml]="number.value"
+      (click)="selectMega(number)"
+    ></div>
+  </div>
+</div>

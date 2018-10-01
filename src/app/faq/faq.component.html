@@ -1,0 +1,7 @@
+<div class="faq">
+  <div class="title">FAQs: Frequently Asked Questions</div>
+  <div *ngFor="let faq of faqs" [class.open]="faq.open">
+    <div class="question" [innerHtml]="faq.question" (click)="faq.open = !faq.open"></div>
+    <div *ngIf="faq.open" class="text" [innerHtml]="faq.answer"></div>
+  </div>
+</div>

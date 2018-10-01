@@ -1,0 +1,6 @@
+<div class="modal-overlay" [class.active]="active" (click)="close()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <ng-content></ng-content>
+    <button *ngIf="doneButton" class="done-button" (click)="close()">Done with Ticket</button>
+  </div>
+</div>
